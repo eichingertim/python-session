@@ -15,7 +15,6 @@ def person_add():
 
         if 'name' not in keys or 'age' not in keys or 'job' not in keys:
             abort(400, 'Not all attributes are available')
-            return
 
         people_info.append(data)
 
@@ -23,7 +22,44 @@ def person_add():
     except Exception as e:
         print(e)
         abort(400, str(e))
-        return
+
+
+def person_update():
+    try:
+        data = request.get_json(force=True)
+        keys = data.keys()
+
+        if 'name' not in keys:
+            abort(400, 'Name and one other required attribute not specified')
+
+        if 'age' not in keys and 'job' not in keys:
+            abort(400, 'Name and one other required attribute not specified')
+
+        found = False
+
+        for i, person in enumerate(people_info):
+            if person['name'] == data['name']:
+
+                try:
+                    people_info[i]['age'] = data['age']
+                except:
+                    print('age should not be changed')
+
+                try:
+                    people_info[i]['job'] = data['job']
+                except:
+                    print('job should not be changed')
+                found = True
+
+        print('Found')
+
+        if found:
+            return {'status': 200, 'person': data}
+        else:
+            abort(400, 'Person cannot be updated. Person not available')
+    except Exception as e:
+        print(e)
+        abort(400, str(e))
 
 
 def hello():

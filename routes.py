@@ -12,6 +12,7 @@ def init_routes(app):
     app.add_url_rule(USER_PROFILE, 'user_profile', user_profile)
     app.add_url_rule(PERSON, 'person', person)
     app.add_url_rule(PERSON, 'person_add', person_add, methods=['POST'])
+    app.add_url_rule(PERSON, 'person_update', person_update, methods=['PUT'])
 
 
 def list_routes(app):
