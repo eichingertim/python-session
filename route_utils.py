@@ -1,0 +1,6 @@
+API = '/api/'
+INFO = f'{API}info/'
+DB = f'{API}db/'
+HELLO = f'{API}hello/'
+PERSON = f'{API}person/'
+USER_PROFILE = f'{API}profile/<id>'
